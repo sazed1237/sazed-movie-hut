@@ -97,7 +97,7 @@ const BannerHome = () => {
                                             <p>View : {Number(data.popularity).toFixed(0)} </p>
                                         </div>
 
-                                        <button onClick={() => handlePlayVideo(data)} className='px-3 py-1 bg-white rounded-sm text-orange-500 font-semibold my-4 hover:bg-gradient-to-l from-orange-500 to-red-500 shadow-md transition-all hover:scale-105 hover:text-white'>Play Now</button>
+                                        <button onClick={() => handlePlayVideo(data)} className='px-3 relative py-1 z-20 bg-white rounded-sm text-orange-500 font-semibold my-4 hover:bg-gradient-to-l from-orange-500 to-red-500 shadow-md transition-all hover:scale-105 hover:text-white'>Play Now</button>
                                     </div>
                                 </div>
                             </div>
