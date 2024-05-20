@@ -20,7 +20,7 @@ const HorizontalItems = ({ heading, fetchData, trending, media_type }) => {
             <h1 className='text-xl lg:text-2xl font-bold mb-2 capitalize'>{heading}</h1>
 
             <div className='relative group'>
-                <div ref={containerRef} className='grid grid-cols-[repeat(auto-fit,230px)] gap-5 items-center grid-flow-col overflow-hidden overflow-x-scroll relative z-10 scroll-smooth transition-all scrollbar-none'>
+                <div ref={containerRef} className='grid grid-cols-[repeat(auto-fit,300px)] md:grid-cols-[repeat(auto-fit,230px)] gap-5 items-center grid-flow-col overflow-hidden overflow-x-scroll relative z-10 scroll-smooth transition-all scrollbar-none'>
                     {
                         fetchData?.map((data, index) => <MovieCard
                             key={index}

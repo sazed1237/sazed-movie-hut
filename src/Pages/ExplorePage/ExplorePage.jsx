@@ -60,7 +60,7 @@ const ExplorePage = () => {
                 }
 
                 {/* <h1>total {discoverData.length}</h1> */}
-                <div className='grid grid-cols-[repeat(auto-fit,230px)] gap-5 items-center justify-center my-4'>
+                <div className='grid grid-cols-[repeat(auto-fit,300px)] md:grid-cols-[repeat(auto-fit,230px)] gap-5 items-center justify-center my-4'>
                     {
                         discoverData.map((data, index) => <MovieCard
                             key={index}

@@ -68,7 +68,7 @@ const Search = () => {
                 <h1 className='text-xl font-semibold my-3'>Search Results</h1>
 
                 {/* <h1>total {searchData.length}</h1> */}
-                <div className='grid grid-cols-[repeat(auto-fit,230px)] gap-5 items-center justify-center my-4'>
+                <div className='grid grid-cols-[repeat(auto-fit,300px)] md:grid-cols-[repeat(auto-fit,230px)] gap-5 items-center justify-center my-4'>
                     {
                         searchData?.map((data, index) => <MovieCard
                             key={index}

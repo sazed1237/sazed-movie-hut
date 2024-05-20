@@ -8,12 +8,12 @@ const MovieCard = ({ data, trending, index, media_type }) => {
     const mediaType = data.media_type ?? media_type
 
     return (
-        <Link to={`/${mediaType}/${data.id}`} className='w-full min-w-[230px] max-w-[230px] h-80 overflow-hidden rounded relative'>
+        <Link to={`/${mediaType}/${data.id}`} className='w-full min-w-[300px] max-w-[300px] md:min-w-[230px] md:max-w-[230px] h-96 md:h-80 overflow-hidden rounded relative'>
 
             {
                 data?.poster_path ? (
-                    <img src={imageURL + data?.poster_path} alt="" className='hover:scale-110 transition-all' />
-                    
+                    <img src={imageURL + data?.poster_path} alt="" className='hover:scale-110 object-cover w-full h-full transition-all' />
+
                 )
                     :
                     (
