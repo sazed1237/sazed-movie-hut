@@ -5,6 +5,8 @@ import moment from "moment";
 import Divider from "../../components/Divider";
 import useFetch from "../../hooks/useFetch";
 import HorizontalItems from "../Home/Home/HorizontalItems";
+import { useState } from "react";
+import PlayVideo from "../../components/PlayVideo";
 
 
 const DetailsPage = () => {
@@ -16,8 +18,16 @@ const DetailsPage = () => {
     const { data: similarData } = useFetch(`/${params?.details}/${params?.id}/similar`)
     const { data: recommendationData } = useFetch(`/${params?.details}/${params?.id}/recommendations`)
 
-    console.log(data)
-    console.log(starCast)
+    const [playVideo, setPlayVideo] = useState(false)
+    const [playVideoById, setPlayVideoById] = useState('')
+
+    // console.log(data)
+    // console.log(starCast)
+
+    const handlePlayVideo = async (data) => {
+        setPlayVideoById(data.id)
+        setPlayVideo(true)
+    }
 
 
     return (
@@ -41,11 +51,18 @@ const DetailsPage = () => {
             <div className="container px-4 mx-auto  relative py-16 md:py-0 flex flex-col md:flex-row gap-5 md:gap-10">
 
                 <div className="md:-mt-28 flex justify-center md:justify-start min-w-60 ">
-                    <img
-                        src={imageURL + data?.poster_path}
-                        className='w-60 h-80  object-cover'
-                        alt=""
-                    />
+                    <div>
+                        <img
+                            src={imageURL + data?.poster_path}
+                            className='w-60 h-80  object-cover'
+                            alt=""
+                        />
+                        <button
+                            onClick={() => handlePlayVideo(data)}
+                            className='px-3 w-full py-1 bg-white rounded-sm text-neutral-900 font-semibold mt-2 hover:bg-gradient-to-l from-orange-500 to-red-500 shadow-md transition-all hover:scale-105 hover:text-white'>
+                            Play Now
+                        </button>
+                    </div>
                 </div>
 
                 <div className="">
@@ -131,6 +148,11 @@ const DetailsPage = () => {
                 <HorizontalItems heading={`Similar ${params?.details}`} fetchData={similarData} media_type={params?.details} ></HorizontalItems>
                 <HorizontalItems heading={`recommendations ${params?.details}`} fetchData={recommendationData} media_type={params?.details} ></HorizontalItems>
             </div>
+
+            {
+                playVideo && <PlayVideo videoId={playVideoById} close={() => setPlayVideo(false)} media_type={params?.details} ></PlayVideo>
+            }
+
 
         </div>
     );
