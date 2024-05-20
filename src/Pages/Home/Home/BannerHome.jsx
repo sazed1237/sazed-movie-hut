@@ -3,12 +3,26 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import PlayVideo from '../../../components/PlayVideo';
 
 const BannerHome = () => {
     const bannerData = useSelector(state => state?.movieHutData?.bannerData)
     const imageURL = useSelector(state => state?.movieHutData?.imageURL)
     // console.log(bannerData?.movieHutData?.bannerData)
     const [currentImage, setCurrentImage] = useState(0)
+
+    const [playVideo, setPlayVideo] = useState(false)
+    const [mediaType, setMediaType] = useState(false)
+    const [playVideoById, setPlayVideoById] = useState('')
+
+
+
+
+    const handlePlayVideo = async (data) => {
+        setPlayVideoById(data.id)
+        setMediaType(data?.media_type)
+        setPlayVideo(true)
+    }
 
 
     const handleNext = async () => {
@@ -27,10 +41,10 @@ const BannerHome = () => {
         const interval = setInterval(() => {
             if (currentImage < bannerData.length - 1) {
                 handleNext()
-            }else{
+            } else {
                 setCurrentImage(0)
             }
-        }, 5000);
+        }, 10000);
         return () => clearInterval(interval)
 
     }, [bannerData, imageURL, currentImage])
@@ -83,21 +97,20 @@ const BannerHome = () => {
                                             <p>View : {Number(data.popularity).toFixed(0)} </p>
                                         </div>
 
-                                        <button className='px-3 py-1 bg-white rounded-sm text-orange-500 font-semibold mt-4 hover:bg-gradient-to-l from-orange-500 to-red-500 shadow-md transition-all hover:scale-105 hover:text-white'>Play Now</button>
+                                        <button onClick={() => handlePlayVideo(data)} className='px-3 py-1 bg-white rounded-sm text-orange-500 font-semibold my-4 hover:bg-gradient-to-l from-orange-500 to-red-500 shadow-md transition-all hover:scale-105 hover:text-white'>Play Now</button>
                                     </div>
                                 </div>
-
-
-
-
                             </div>
                         )
-
                     })
                 }
             </div>
+
+            {
+                playVideo && <PlayVideo videoId={playVideoById} close={() => setPlayVideo(false)} media_type={mediaType} ></PlayVideo>
+            }
         </section >
-    ); 
+    );
 };
 
 export default BannerHome;
